@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/head :: head('Pacientes')}"></head>
+<body>
+<div class="container mt-5">
+    <div th:insert="~{fragments/navbar :: navbar}"></div>
+    <h1>Lista de Pacientes</h1>
+    <a class="btn btn-primary" th:href="@{/pacientes/nuevo}">Nuevo Paciente</a>
+    <table class="table table-striped mt-3">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Cedula</th>
+            <th>Direccion</th>
+            <th>Prevision</th>
+            <th>Contacto</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="paciente : ${pacientes}">
+            <td th:text="${paciente.id}">1</td>
+            <td th:text="${paciente.nombre}">Juan</td>
+            <td th:text="${paciente.cedula}">Perez</td>
+            <td th:text="${paciente.direccion}">12345678</td>
+            <td th:text="${paciente.prevision}">Gripe</td>
+            <td th:text="${paciente.contacto}">Estable</td>
+            <td>
+                <a class="btn btn-warning" th:href="@{/pacientes/editar/{id}(id=${paciente.id})}">Editar</a>
+                <a class="btn btn-danger" th:href="@{/pacientes/eliminar/{id}(id=${paciente.id})}">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div th:insert="~{fragments/scripts :: scripts}"></div>
+</body>
+</html>
